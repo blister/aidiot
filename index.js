@@ -33,8 +33,9 @@ app.post('/chat', async (req, res) => {
 
 async function runCompletion(input) {
 	conversations.push({ role: 'user', 'content': input });
+	let completion;
 	try {
-		let completion = await openai.createChatCompletion({
+		completion = await openai.createChatCompletion({
 			model: 'gpt-3.5-turbo',
 			messages: conversations,
 		});
