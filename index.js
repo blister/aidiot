@@ -39,10 +39,10 @@ async function runCompletion(input) {
 	});
 
 	try {
-		let last = lastAnswer();
+		let rand = randAnswer();
 		conversations.push({ role: 'system', 'content': completion.data.choices[0].message.content });
 		if ( Math.random() > .3 && last ) {
-			return last.content;
+			return rand.content;
 		} else {
 			return completion.data.choices[0].message.content;
 		}
@@ -52,8 +52,16 @@ async function runCompletion(input) {
 	}
 }
 
-function lastAnswer() {
-	for ( let i = conversations.length; i > 0; i-- ) {
+function randAnswer() {
+	let countStart = conversations.length;
+	if ( conversations.length > 10 ) { 
+		countStart = Math.floor(Math.random() * conversations.length) + 2;
+
+		if ( countStart > conversations.length ) { 
+			countStart = conversations.lenght;
+		}
+	}
+	for ( let i = countStart; i > 0; i-- ) {
 		let convo = conversations[i-1];
 		if ( convo.role && convo.role ==  'system' ) {
 			return convo;
