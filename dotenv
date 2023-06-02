@@ -1,0 +1,6 @@
+# Put your OpenAI Api Key Here
+# https://platform.openai.com/account/api-keys
+OPENAI_API_KEY=
+
+# port for our webserver to listen on
+PORT=3333
