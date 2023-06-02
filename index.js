@@ -46,7 +46,7 @@ async function runCompletion(input) {
 	try {
 		let rand = randAnswer();
 		conversations.push({ role: 'system', 'content': completion.data.choices[0].message.content });
-		if ( Math.random() > .3 && last ) {
+		if ( Math.random() > .3 && rand ) {
 			return rand.content;
 		} else {
 			return completion.data.choices[0].message.content;
