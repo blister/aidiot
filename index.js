@@ -33,10 +33,14 @@ app.post('/chat', async (req, res) => {
 
 async function runCompletion(input) {
 	conversations.push({ role: 'user', 'content': input });
-	let completion = await openai.createChatCompletion({
-		model: 'gpt-3.5-turbo',
-		messages: conversations,
-	});
+	try {
+		let completion = await openai.createChatCompletion({
+			model: 'gpt-3.5-turbo',
+			messages: conversations,
+		});
+	} catch(e) {
+		return 'I just had a bit of a brain fart... ask again.';
+	}
 
 	try {
 		let rand = randAnswer();
