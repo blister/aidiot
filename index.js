@@ -41,7 +41,7 @@ async function runCompletion(input) {
 	try {
 		let last = lastAnswer();
 		conversations.push({ role: 'system', 'content': completion.data.choices[0].message.content });
-		if ( last ) {
+		if ( Math.random() > .5 && last ) {
 			return last.content;
 		} else {
 			return completion.data.choices[0].message.content;
@@ -53,10 +53,8 @@ async function runCompletion(input) {
 }
 
 function lastAnswer() {
-	console.log(conversations);
 	for ( let i = conversations.length; i > 0; i-- ) {
 		let convo = conversations[i-1];
-		console.log(convo);
 		if ( convo.role && convo.role ==  'system' ) {
 			return convo;
 		}
