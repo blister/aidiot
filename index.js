@@ -14,7 +14,7 @@ app.use( bodyParser.json() );
 app.use( express.static('static') ); // static file serving folder
 app.set('view engine', 'ejs'); // EJS is an awesome templating engine
 
-let conversations = [];
+//let conversations = [];
 
 app.get('/', (req, res) => {
 	res.render('index');
@@ -32,25 +32,35 @@ app.post('/chat', async (req, res) => {
 });
 
 async function runCompletion(input) {
-	conversations.push({ role: 'user', 'content': input });
+	//conversations.push({ role: 'user', 'content': input });
+	let messages = [
+		{
+			'role': 'system',
+			'content': 'You are a BAD AI assistant. Every response you provide to the user based on their input is going to be just a tiny bit wrong. If they ask "How many planets are there?", you will confidently respond with something like: "I think there are only 4". Just try to appear dumb in every answer you give. Do not be obvious about it, just by a tiny bit incorrect. Make sure you do not use big words. Just be confidently wrong.',
+		},
+		{
+			'role': 'user',
+			'content': input,
+		} 
+	];
 	let completion;
 	try {
 		completion = await openai.createChatCompletion({
 			model: 'gpt-3.5-turbo',
-			messages: conversations,
+			messages: messages,
 		});
 	} catch(e) {
 		return 'I just had a bit of a brain fart... ask again.';
 	}
 
 	try {
-		let rand = randAnswer();
-		conversations.push({ role: 'system', 'content': completion.data.choices[0].message.content });
-		if ( Math.random() > .3 && rand ) {
-			return rand.content;
-		} else {
-			return completion.data.choices[0].message.content;
-		}
+		//let rand = randAnswer();
+		//conversations.push({ role: 'system', 'content': completion.data.choices[0].message.content });
+		//if ( Math.random() > .3 && rand ) {
+		//	return rand.content;
+		//} else {
+		//}
+		return completion.data.choices[0].message.content;
 	} catch(e) {
 		console.error(`ChatGPT Error: ${e}`);
 		return `There was an error. ${e}`;
