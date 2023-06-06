@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log(response);
 			document.getElementById('ai_response').innerText = response.ai_output;
 			document.getElementById('loadChat').disabled = false;
-			document.getElementById('loadChat').value = 'Load ChatGPT Response';
+			document.getElementById('loadChat').value = 'Ask your question!';
 		});
 
 	});
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log(response);
 			document.getElementById('ai_response').innerText = response.ai_output;
 			document.getElementById('loadChat').disabled = false;
-			document.getElementById('loadChat').value = 'Load ChatGPT Response';
+			document.getElementById('loadChat').value = 'Ask your question!';
 		});
 	});
 });
