@@ -11,12 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.getElementById('ai_response').classList.remove('hidden');
 		document.getElementById('ai_response').innerText = 'Thinking...';
 
+		let request = {'ai_input': input };
+		if ( input.dataset.emo ) {
+			request.emo = true;
+		}
+
 		fetch('/chat', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ 'ai_input': input  })
+			body: JSON.stringify(request)
 		}).then(response => response.json()).then(response => {
 			console.log(response);
 			document.getElementById('ai_response').innerText = response.ai_output;
@@ -35,13 +40,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		document.getElementById('ai_response').classList.remove('hidden');
 		document.getElementById('ai_response').innerText = 'Thinking...';
+		
+		let request = {'ai_input': input };
+		if ( input.dataset.emo ) {
+			request.emo = true;
+		}
 
 		fetch('/chat', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({ 'ai_input': input  })
+			body: JSON.stringify(request)
 		}).then(response => response.json()).then(response => {
 			console.log(response);
 			document.getElementById('ai_response').innerText = response.ai_output;
