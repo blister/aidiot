@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.getElementById('ai_response').innerText = 'Thinking...';
 
 		let request = {'ai_input': input };
-		if ( input.classList.contains('emo') ) {
+		if ( document.getElementById('ai_input').classList.contains('emo') ) {
 			request.emo = true;
 		}
 
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.getElementById('ai_response').innerText = 'Thinking...';
 		
 		let request = {'ai_input': input };
-		if ( input.classList.contains('emo') ) {
+		if ( document.getElementById('ai_input').classList.contains('emo') ) {
 			request.emo = true;
 		}
 
